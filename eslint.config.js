@@ -1,9 +1,11 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
-import { globalIgnores } from 'eslint/config'
+import js from '@eslint/js';
+import globals from 'globals';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import tseslint from 'typescript-eslint';
+import { globalIgnores } from 'eslint/config';
+import prettier from 'eslint-plugin-prettier';
+import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default tseslint.config([
   globalIgnores(['dist']),
@@ -11,7 +13,8 @@ export default tseslint.config([
     files: ['**/*.{ts,tsx}'],
     extends: [
       js.configs.recommended,
-      tseslint.configs.recommended,
+      ...tseslint.configs.recommended,
+      eslintConfigPrettier,
       reactHooks.configs['recommended-latest'],
       reactRefresh.configs.vite,
     ],
@@ -19,5 +22,16 @@ export default tseslint.config([
       ecmaVersion: 2020,
       globals: globals.browser,
     },
+    plugins: {
+      prettier,
+    },
+    rules: {
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
+      'prettier/prettier': 'error',
+      '@typescript-eslint/no-explicit-any': 'warn',
+    },
   },
-])
+]);
