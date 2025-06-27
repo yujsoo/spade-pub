@@ -1,0 +1,8 @@
+:root {
+    --font-base: 'Noto Sans KR', system-ui, Avenir, Helvetica, Arial, sans-serif;
+    --color-primary: #111;
+    --color-gray1: #F4F4F4;
+    --color-gray2: #ddd;
+    --color-gray4: #777;
+    --color-white: #fff;
+}
