@@ -102,10 +102,16 @@ select::-ms-expand {
 }
 
 input {
+  height: 44px;
   border: 1px solid var(--color-gray2);
-  font-size: 16px;
+  border-radius: 3px;
+  font-size: 14px;
+  background-color:#fff;
 }
-
+input::placeholder {
+  font-size: 14px;
+  color: var(--color-gray3);
+}
 input:disabled {
   opacity: 1;
   -webkit-text-fill-color: inherit
@@ -127,11 +133,16 @@ input[type="button"] {
   -moz-appearance: none;
   appearance: none;
   border: 1px solid var(--color-gray2);
-  background: var(--color-white);
+  background-color: var(--color-white);
   transition: border-color .3s ease;
   cursor: pointer;
 }
-
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="tel"]:focus,
