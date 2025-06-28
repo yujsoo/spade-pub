@@ -1,14 +1,15 @@
-import Header from '@/components/organisms/Header';
 import { Outlet } from 'react-router-dom';
+import styles from './DefaultLayout.module.css';
+import Header from '@/components/organisms/Header';
 
 function DefaultLayout() {
   return (
-    <div>
+    <>
       <Header />
-      <main>
+      <main className={styles.main}>
         <Outlet />
       </main>
-    </div>
+    </>
   );
 }
 

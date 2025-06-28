@@ -1,0 +1,13 @@
+.userUtil a {
+ color: var(--color-gray4);
+ padding: 10px;
+ font-size: 14px;
+ font-weight: 500;
+}
+.userUtil a img {
+    margin-right: 2px;
+    vertical-align: text-top;
+}
+.userUtil a + a {
+    margin-left: 10px;
+}

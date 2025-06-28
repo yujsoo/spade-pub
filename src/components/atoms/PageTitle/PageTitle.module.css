@@ -1,0 +1,9 @@
+.pageTitle {
+    display: flex;
+    align-items: center;
+    font-size: 27px;
+    font-weight: 700;
+}
+.pageTitle img {
+    margin-right: 10px;
+}

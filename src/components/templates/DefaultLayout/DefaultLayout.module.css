@@ -1,0 +1,9 @@
+main {
+    padding:40px 50px 40px 114px;
+}
+
+.headTop {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}

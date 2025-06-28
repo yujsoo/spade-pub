@@ -1,7 +1,7 @@
 function Header() {
   return (
     <header>
-      <b>안녕하세요</b>
+      <h1 className="srOnly">사이트 이름</h1>
     </header>
   );
 }
