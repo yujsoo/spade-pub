@@ -1,5 +1,6 @@
 .searchWrapper {
     display: flex;
+    flex: auto;
 }
 
 .searchInput[type="search"] {

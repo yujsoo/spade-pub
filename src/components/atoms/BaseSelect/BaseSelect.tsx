@@ -7,7 +7,7 @@ interface Option {
 }
 
 interface BaseSelectProps {
-  options: Option[];
+  options?: Option[];
   value?: string;
   onChange: (value: string) => void;
   className?: string;
@@ -39,7 +39,7 @@ function BaseSelect({
       <button
         className={styles.trigger}
         onClick={() => setOpen((prev) => !prev)}>
-        {selected?.label ?? '옵션명 선택'}
+        {selected?.label ?? '선택 가능한 목록이 없습니다'}
         <span className={`${styles.arrow} ${open ? styles.open : ''}`} />
       </button>
 
