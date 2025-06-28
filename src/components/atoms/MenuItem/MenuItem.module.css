@@ -1,0 +1,45 @@
+.menuItem {
+    color: var(--color-white);
+    white-space: nowrap;
+}
+
+.menuItem a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: inherit;
+}
+
+.level1 > p {
+    padding: 14px 20px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.level1 .text {
+    margin-left: 11px;
+}
+
+.level2 > p a {
+   padding: 10px 24px;
+   font-size: 14px;
+}
+
+.menuIcon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    vertical-align: text-top;
+}
+.menuIcon[data-icon="icon-journal"] {
+    background-image: url('/assets/ic/ic_journal.svg');
+}
+.menuIcon[data-icon="icon-baseinfo"] {
+    background-image: url('/assets/ic/ic_baseinfo.svg');
+}
+.menuIcon[data-icon="icon-book"] {
+    background-image: url('/assets/ic/ic_book.svg');
+}
+.menuIcon[data-icon="icon-report"] {
+    background-image: url('/assets/ic/ic_report.svg');
+}

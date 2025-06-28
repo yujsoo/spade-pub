@@ -4,6 +4,7 @@ export interface SiteMenu {
   level: number;
   parentId: number | null;
   icon?: string;
+  path?: string;
   disabled?: boolean;
   children?: SiteMenu[];
 }
