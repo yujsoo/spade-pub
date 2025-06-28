@@ -1,0 +1,10 @@
+nav {
+    width: 64px;
+    height: 100%;
+    background-color: var(--color-primary);
+    transition: width .3s ease;
+}
+
+nav.open {
+    width: 280px;
+}
