@@ -136,6 +136,12 @@ function CompanyDetail({ caption }: CompanyDetailProps) {
           </th>
           <td colSpan={3}>{' '}</td>
         </tr>
+        <tr>
+          <th>
+            <LabelWithRequired label="사용여부" />
+          </th>
+          <td colSpan={3}>여</td>
+        </tr>
       </tbody>
     </table>
   );
