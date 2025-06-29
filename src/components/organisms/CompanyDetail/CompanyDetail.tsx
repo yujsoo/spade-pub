@@ -29,9 +29,9 @@ function CompanyDetail({ caption }: CompanyDetailProps) {
             <LabelWithRequired label="주민 등록 번호" required />
           </th>
           <td>111111-1111111</td>
-          <td>
+          <th>
             <LabelWithRequired label="주민기재분" required />
-          </td>
+          </th>
           <td>부</td>
         </tr>
         <tr>
@@ -94,7 +94,6 @@ function CompanyDetail({ caption }: CompanyDetailProps) {
           </th>
           <td>1,000,000원</td>
         </tr>
-
         <tr>
           <th>
             <LabelWithRequired label="주류코드" />
