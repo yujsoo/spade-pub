@@ -6,6 +6,7 @@ import ScrollContainer from '@/components/templates/ScrollContainer';
 import { clientData } from '@/data/clientData';
 import laptopIcon from '@/assets/ic/ic_laptop.svg';
 import Button from '@/components/atoms/Button';
+import CompanyDetail from '@/components/organisms/CompanyDetail';
 
 function AddClientPage() {
   return (
@@ -26,8 +27,8 @@ function AddClientPage() {
           <div className={styles.btnCon}>
             <Button text="수정" variant="white" />
           </div>
-          <ScrollContainer className={styles.clientListCon}>
-            <></>
+          <ScrollContainer>
+            <CompanyDetail caption="거래처 등록 상세 표" />
           </ScrollContainer>
         </div>
       </div>
