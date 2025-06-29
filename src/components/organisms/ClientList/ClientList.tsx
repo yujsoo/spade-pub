@@ -6,9 +6,16 @@ import commonTableStyles from '@/styles/table.module.css';
 interface ClientListProps {
   caption: string;
   clientData: ClientType[];
+  onSelect: (id: string) => void;
+  selectedId: string | null;
 }
 
-function ClientList({ caption, clientData }: ClientListProps) {
+function ClientList({
+  caption,
+  clientData,
+  onSelect,
+  selectedId,
+}: ClientListProps) {
   return (
     <table className={commonTableStyles.commonTable}>
       <caption>{caption}</caption>
@@ -26,7 +33,12 @@ function ClientList({ caption, clientData }: ClientListProps) {
       </thead>
       <tbody>
         {clientData.map((item) => (
-          <ClientRow key={item.id} item={item} />
+          <ClientRow
+            key={item.id}
+            item={item}
+            isActive={item.id === selectedId}
+            onClick={() => onSelect(item.id)}
+          />
         ))}
       </tbody>
     </table>

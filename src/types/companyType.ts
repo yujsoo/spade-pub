@@ -1,4 +1,6 @@
 export interface CompanyType {
+  id: string;
+
   // 사업자등록번호
   brn: string;
 

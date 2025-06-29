@@ -2,6 +2,8 @@ import type { CompanyType } from '@/types/companyType';
 
 export const companyData: CompanyType[] = [
   {
+    id: 'comp-001',
+
     // 사업자등록번호
     brn: '111-11-1111',
 
@@ -45,13 +47,13 @@ export const companyData: CompanyType[] = [
     printable_company_name: '(주)가가상사',
 
     // 담보설정액
-    guarantee_amount: '1,000,000원',
+    guarantee_amount: '1,000,000',
 
     // 여신한도액
-    credit_limit: '1,000,000원',
+    credit_limit: '1,000,000',
 
     // 주류코드
-    product_code: '2208.90-4000호',
+    product_code: '2208.90-4000',
 
     // 주류코드명
     product_name: '소주',
@@ -84,6 +86,37 @@ export const companyData: CompanyType[] = [
     note: '',
 
     // 사용여부
+    is_active: '여',
+  },
+  {
+    id: 'comp-002',
+    brn: '222-22-2222',
+    resident_registration_number: '222222-2222222',
+    resident_type: '부',
+    ceo_name: '오대표',
+    sub_business_number: '11',
+    business_type: '서비스업',
+    item: '종목',
+    zipcode: '150-800',
+    address: '서울특별시 영등포구 영등포로 129 (당산동1가) 120',
+    phone: '02-111-1111',
+    fax: '011-111-1111',
+    department: '국민은행',
+    manager: '오대표',
+    printable_company_name: '(주)가가상사',
+    guarantee_amount: '1,000,000',
+    credit_limit: '1,000,000',
+    product_code: '2208.90-4000',
+    product_name: '소주',
+    bank: '국민은행',
+    account_holder: '오대표',
+    account_number: '11111111111111',
+    email: 'kim111@gagasangsa.com',
+    category1: '(A) 농업, 임업 및 어업(01~03)',
+    category2: '(01110) 곡물 및 기타 식량작물 재배업',
+    contract_start: '2025-06-01',
+    contract_end: '2025-06-12',
+    note: '',
     is_active: '여',
   },
 ];

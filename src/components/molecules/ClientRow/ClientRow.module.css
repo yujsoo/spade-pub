@@ -1,0 +1,3 @@
+.activeRow td {
+    background-color: var(--color-gray2) !important;
+}

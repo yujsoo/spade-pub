@@ -17,12 +17,4 @@ export const clientData: ClientType[] = [
     type: '동시',
     companyId: 'comp-002',
   },
-  {
-    id: '3',
-    code: '00103',
-    name: '(주) 가가상사',
-    brn: '1111111111',
-    type: '매입',
-    companyId: 'comp-003',
-  },
 ];

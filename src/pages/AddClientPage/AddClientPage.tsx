@@ -1,14 +1,35 @@
+import { useMemo, useState } from 'react';
 import styles from './AddClientPage.module.css';
-import HeadContent from '@/components/molecules/HeadContent';
-import PageTitle from '@/components/atoms/PageTitle';
-import ClientList from '@/components/organisms/ClientList';
-import ScrollContainer from '@/components/templates/ScrollContainer';
 import { clientData } from '@/data/clientData';
-import laptopIcon from '@/assets/ic/ic_laptop.svg';
+import { companyData } from '@/data/companyData';
+import PageTitle from '@/components/atoms/PageTitle';
 import Button from '@/components/atoms/Button';
+import HeadContent from '@/components/molecules/HeadContent';
+import ClientList from '@/components/organisms/ClientList';
 import CompanyDetail from '@/components/organisms/CompanyDetail';
+import ScrollContainer from '@/components/templates/ScrollContainer';
+import laptopIcon from '@/assets/ic/ic_laptop.svg';
 
 function AddClientPage() {
+  // 사용자가 선택한 항목 id 저장
+  const [selectedId, setSelectedId] = useState<string | null>(
+    clientData[0]?.id ?? null,
+  );
+
+  // clientData 조회
+  const clientMap = useMemo(() => {
+    return new Map(clientData.map((data) => [data.id, data]));
+  }, []);
+
+  // companyData 조회
+  const companyMap = useMemo(() => {
+    return new Map(companyData.map((data) => [data.id, data]));
+  }, []);
+
+  const selectedCompany = selectedId
+    ? (companyMap.get(clientMap.get(selectedId)?.companyId ?? '') ?? null)
+    : null;
+
   return (
     <>
       <HeadContent>
@@ -20,7 +41,12 @@ function AddClientPage() {
             <Button text="등록" />
           </div>
           <ScrollContainer>
-            <ClientList clientData={clientData} caption="거래처 등록 현황 표" />
+            <ClientList
+              clientData={clientData}
+              onSelect={(id) => setSelectedId(id)}
+              selectedId={selectedId}
+              caption="거래처 등록 현황 표"
+            />
           </ScrollContainer>
         </div>
         <div className={`${styles.containerCon} ${styles.detailListCon}`}>
@@ -28,7 +54,10 @@ function AddClientPage() {
             <Button text="수정" variant="white" />
           </div>
           <ScrollContainer>
-            <CompanyDetail caption="거래처 등록 상세 표" />
+            <CompanyDetail
+              caption="거래처 등록 상세 표"
+              selectedClient={selectedCompany}
+            />
           </ScrollContainer>
         </div>
       </div>
