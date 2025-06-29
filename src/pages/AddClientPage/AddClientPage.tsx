@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import styles from './AddClientPage.module.css';
 import { clientData } from '@/data/clientData';
 import { companyData } from '@/data/companyData';
@@ -8,6 +8,7 @@ import HeadContent from '@/components/molecules/HeadContent';
 import ClientList from '@/components/organisms/ClientList';
 import CompanyDetail from '@/components/organisms/CompanyDetail';
 import ScrollContainer from '@/components/templates/ScrollContainer';
+import useSelectedCompany from '@/hooks/useSelectedCompany';
 import laptopIcon from '@/assets/ic/ic_laptop.svg';
 
 function AddClientPage() {
@@ -16,19 +17,11 @@ function AddClientPage() {
     clientData[0]?.id ?? null,
   );
 
-  // clientData 조회
-  const clientMap = useMemo(() => {
-    return new Map(clientData.map((data) => [data.id, data]));
-  }, []);
-
-  // companyData 조회
-  const companyMap = useMemo(() => {
-    return new Map(companyData.map((data) => [data.id, data]));
-  }, []);
-
-  const selectedCompany = selectedId
-    ? (companyMap.get(clientMap.get(selectedId)?.companyId ?? '') ?? null)
-    : null;
+  const selectedCompany = useSelectedCompany(
+    selectedId,
+    clientData,
+    companyData,
+  );
 
   return (
     <>
