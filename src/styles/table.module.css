@@ -34,3 +34,7 @@
     background-color: var(--color-gray2);
     cursor: pointer;
 }
+
+.commonTable .radioGroup {
+    padding: 5px 0;
+}

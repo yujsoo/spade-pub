@@ -188,7 +188,8 @@ function CompanyDetail({
           <td colSpan={3}>
             {isEditMode ? (
               <div className={inputGroupStyles.inputGroupCol}>
-                <div className={inputGroupStyles.inputWithButton}>
+                <div
+                  className={`${inputGroupStyles.inputWithButton} ${styles.zipcodeBox}`}>
                   <input type="text" {...register('zipcode')} />
                   <Button text="우편번호 검색" variant="white" />
                 </div>
