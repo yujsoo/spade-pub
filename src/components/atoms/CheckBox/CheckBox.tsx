@@ -2,7 +2,7 @@ import styles from './CheckBox.module.css';
 
 interface CheckBoxProps {
   checked?: boolean;
-  onChange?: () => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   label?: string; // 접근성 관련
 }
 

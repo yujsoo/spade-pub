@@ -1,0 +1,9 @@
+
+.radioGroup {
+    display: flex;
+    align-items: center;
+} 
+
+.radioGroup label:not(:last-child) {
+    margin-right:10px;
+}
