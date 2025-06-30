@@ -3,11 +3,9 @@ import styles from './AddClientPage.module.css';
 import { clientData } from '@/data/clientData';
 import { companyData } from '@/data/companyData';
 import PageTitle from '@/components/atoms/PageTitle';
-import Button from '@/components/atoms/Button';
 import HeadContent from '@/components/molecules/HeadContent';
-import ClientList from '@/components/organisms/ClientList';
-import CompanyDetail from '@/components/organisms/CompanyDetail';
-import ScrollContainer from '@/components/templates/ScrollContainer';
+import ClientListSection from '@/components/organisms/ClientListSection';
+import CompanyDetailSection from '@/components/organisms/CompanyDetailSection';
 import useSelectedCompany from '@/hooks/useSelectedCompany';
 import laptopIcon from '@/assets/ic/ic_laptop.svg';
 
@@ -30,28 +28,14 @@ function AddClientPage() {
       </HeadContent>
       <div className={styles.container}>
         <div className={`${styles.containerCon} ${styles.clientListCon}`}>
-          <div className={styles.btnCon}>
-            <Button text="등록" />
-          </div>
-          <ScrollContainer>
-            <ClientList
-              clientData={clientData}
-              onSelect={(id) => setSelectedId(id)}
-              selectedId={selectedId}
-              caption="거래처 등록 현황 표"
-            />
-          </ScrollContainer>
+          <ClientListSection
+            clientData={clientData}
+            selectedId={selectedId}
+            onSelect={setSelectedId}
+          />
         </div>
         <div className={`${styles.containerCon} ${styles.detailListCon}`}>
-          <div className={styles.btnCon}>
-            <Button text="수정" variant="white" />
-          </div>
-          <ScrollContainer>
-            <CompanyDetail
-              caption="거래처 등록 상세 표"
-              selectedClient={selectedCompany}
-            />
-          </ScrollContainer>
+          <CompanyDetailSection selectedCompany={selectedCompany} />
         </div>
       </div>
     </>

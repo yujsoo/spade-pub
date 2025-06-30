@@ -10,13 +10,3 @@
 .detailListCon {
     flex: 1;
 }
-
-.btnCon {
-    width: 100%;
-    margin-bottom: 10px;
-    text-align: right;
-}
-
-.btnCon button {
-    width: 93px;
-}
