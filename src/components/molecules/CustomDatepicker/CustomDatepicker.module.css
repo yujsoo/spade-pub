@@ -1,0 +1,47 @@
+.headerWrapper{
+    border-bottom: 0;
+}
+
+.monthCtrl {
+    display: flex;
+    height: 44px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    color: var(--color-white);
+    background: var(--color-primary);
+}
+
+.monthCtrl button {
+    height: 100%;
+    width:24px;
+    border-radius: 0;
+    background-color: var(--color-primary);
+    background-size: 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.monthCtrl button:first-of-type {
+    margin-left: 10px;
+    background-image: url('/assets/ic/ic_prev.svg');
+}
+
+.monthCtrl button:last-of-type {
+    margin-right: 10px;
+    background-image: url('/assets/ic/ic_next.svg');
+}
+
+.todayBtn {
+    width: calc(100% - 34px);
+    height: auto;
+    margin:10px 17px;
+    border-radius: 16px;
+    padding: 4px 12px;
+    color: var(--color-gray4);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+    background: var(--color-gray2);
+}
+

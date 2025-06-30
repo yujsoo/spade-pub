@@ -1,0 +1,76 @@
+.react-datepicker {
+    border-radius: 8px;
+    color: var(--color-primary);
+    font-size: 12px;
+    border-radius: 3px !important;
+    border-color: var(--color-gray2) !important;
+    background: var(--color-white);
+}
+
+.react-datepicker__header {
+    padding: 0 !important;
+    background-color: var(--color-white) !important;
+}
+
+/* 요일 표시 */
+.react-datepicker__day-names {
+    background: var(--color-white);
+}
+.react-datepicker__day-name {
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.react-datepicker__month {
+    margin: 0;
+}
+
+/* 선택된 날짜 */
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range,
+.react-datepicker__month-text--selected,
+.react-datepicker__month-text--in-selecting-range,
+.react-datepicker__month-text--in-range,
+.react-datepicker__quarter-text--selected,
+.react-datepicker__quarter-text--in-selecting-range,
+.react-datepicker__quarter-text--in-range,
+.react-datepicker__year-text--selected,
+.react-datepicker__year-text--in-selecting-range,
+.react-datepicker__year-text--in-range {
+    border-radius: 0 !important;
+    background-color: var(--color-primary) !important;
+    color: var(--color-white) !important;
+}
+
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__month-text--keyboard-selected,
+.react-datepicker__quarter-text--keyboard-selected,
+.react-datepicker__year-text--keyboard-selected{
+    background-color: var(--color-primary) !important;
+    color: var(--color-white) !important;
+}
+
+/* hover 시 */
+.react-datepicker__day:hover {
+    background-color: var(--color-primary) !important;
+    color: var(--color-white) !important;
+}
+
+.react-datepicker-popper .react-datepicker__triangle {
+    display: none !important;
+}
+
+.react-datepicker__day--disabled,
+.react-datepicker__month-text--disabled,
+.react-datepicker__quarter-text--disabled,
+.react-datepicker__year-text--disabled {
+    color: var(--color-gray3) !important;
+}
+
+.sunday-cell,
+.sunday-cell:hover {
+    background-color: #f8f8f8 !important;
+    color: var(--color-gray3) !important;
+    border-radius: 0;
+}

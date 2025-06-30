@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import styles from './CustomDatepicker.module.css';
 
 interface DatepickerProps {
   selected: Date | null;
@@ -16,6 +17,8 @@ function CustomDatepicker({ selected, onChange, minDate }: DatepickerProps) {
         onChange={onChange}
         dateFormat="yyyy-MM-dd"
         minDate={minDate}
+        filterDate={(date) => date.getDay() !== 0}
+        dayClassName={(date) => (date.getDay() === 0 ? 'sunday-cell' : '')}
         renderCustomHeader={({
           date,
           decreaseMonth,
@@ -23,8 +26,8 @@ function CustomDatepicker({ selected, onChange, minDate }: DatepickerProps) {
           prevMonthButtonDisabled,
           nextMonthButtonDisabled,
         }) => (
-          <div>
-            <div>
+          <div className={styles.headerWrapper}>
+            <div className={styles.monthCtrl}>
               <button
                 onClick={decreaseMonth}
                 disabled={prevMonthButtonDisabled}></button>
@@ -33,7 +36,9 @@ function CustomDatepicker({ selected, onChange, minDate }: DatepickerProps) {
                 onClick={increaseMonth}
                 disabled={nextMonthButtonDisabled}></button>
             </div>
-            <button onClick={() => onChange(new Date())}>
+            <button
+              className={styles.todayBtn}
+              onClick={() => onChange(new Date())}>
               Today: {format(new Date(), 'EEEE, MMMM d, yyyy')}
             </button>
           </div>
