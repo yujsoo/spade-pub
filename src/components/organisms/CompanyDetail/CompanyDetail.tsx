@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import styles from './CompanyDetail.module.css';
 import commonTableStyles from '@/styles/table.module.css';
 import Button from '@/components/atoms/Button';
 import LabelWithRequired from '@/components/atoms/LabelWithRequired';
+import CustomDatepicker from '@/components/molecules/CustomDatepicker';
 import type { CompanyType } from '@/types/companyType';
 
 interface CompanyDetailProps {
@@ -15,6 +17,9 @@ function CompanyDetail({
   selectedClient,
   isEditMode,
 }: CompanyDetailProps) {
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
+
   return (
     <table
       className={`${commonTableStyles.commonTable} ${styles.companyTable}`}>
@@ -348,7 +353,24 @@ function CompanyDetail({
           </th>
           <td colSpan={3}>
             {isEditMode ? (
-              <>{/* datepicker 컴포넌트 자리 */}</>
+              <>
+                <div>
+                  시작일{' '}
+                  <CustomDatepicker
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                  />
+                </div>
+                ~
+                <div>
+                  종료일{' '}
+                  <CustomDatepicker
+                    selected={endDate}
+                    onChange={(date) => setEndDate(date)}
+                    minDate={startDate ?? undefined}
+                  />
+                </div>
+              </>
             ) : (
               <>
                 {selectedClient?.contract_start} ~{' '}
