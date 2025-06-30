@@ -1,6 +1,7 @@
 .menuItem {
     color: var(--color-white);
     white-space: nowrap;
+    position:relative;
 }
 
 .menuItem a {
@@ -10,7 +11,8 @@
     color: inherit;
 }
 
-.level1 > p {
+.level1>p {
+    position: relative;
     padding: 14px 20px;
     font-size: 18px;
     font-weight: 700;
@@ -20,9 +22,9 @@
     margin-left: 11px;
 }
 
-.level2 > p a {
-   padding: 10px 24px;
-   font-size: 14px;
+.level2>p a {
+    padding: 10px 24px;
+    font-size: 14px;
 }
 
 .menuIcon {
@@ -31,15 +33,123 @@
     height: 24px;
     vertical-align: text-top;
 }
+
 .menuIcon[data-icon="icon-journal"] {
     background-image: url('/assets/ic/ic_journal.svg');
 }
+
 .menuIcon[data-icon="icon-baseinfo"] {
     background-image: url('/assets/ic/ic_baseinfo.svg');
 }
+
 .menuIcon[data-icon="icon-book"] {
     background-image: url('/assets/ic/ic_book.svg');
 }
+
 .menuIcon[data-icon="icon-report"] {
     background-image: url('/assets/ic/ic_report.svg');
+}
+
+.arrowIcon {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 22px;
+    width: 12px;
+    height: 12px;
+    margin-top: -9px;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.arrowIcon i {
+    display: inline-block;
+    position: absolute;
+    width: 1px;
+    height: 8px;
+    bottom: 0;
+    background: var(--color-white);
+    transition: all .3s ease;
+}
+.arrowIcon i:first-child {
+    transform: rotate(-45deg);
+    left: 3px;
+}
+
+.arrowIcon i:last-child {
+    transform: rotate(45deg);
+    right: 3px;
+}
+.arrowActive i:first-child {
+    transform: rotate(-135deg);
+    transform-origin: center center;
+}    
+.arrowActive i:last-child {
+    transform: rotate(135deg);
+    transform-origin: center center;
+}
+
+.arrowVisible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.submenu {
+    overflow: hidden;
+}
+
+.hoverPopMenu:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 16px;
+    width: calc(100% - 16px);
+    height: 100%;
+    background: var(--color-primary);
+}
+.hoverPopMenu {
+    position: absolute;
+    z-index: 10;
+    top:0;
+    left: 100%;
+    color: var(--color-white);
+    padding:0 16px 6px;
+    border-radius: 3px;
+    min-width: 153px;
+}
+
+.popTitle {
+    padding: 12px 0;
+    margin-bottom: 6px;
+    border-bottom: 1px solid rgba(221, 221, 221, 0.3);
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+.popContent {
+    margin-left: 16px;
+}
+
+.popMenuList li a {
+    padding: 6px 0;
+    color: var(--color-white);
+    line-height: 1.5;
+    font-size: 14px;
+    transition: all .2s ease;
+}
+.popMenuList li:hover a {
+    font-weight: 700;
+}
+
+.arrow {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 6px solid #111;
 }

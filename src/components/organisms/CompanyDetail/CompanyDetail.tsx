@@ -27,7 +27,7 @@ function CompanyDetail({
   selectedClient,
   isEditMode,
 }: CompanyDetailProps) {
-  const { control, register, handleSubmit, watch } = useForm({
+  const { control, register, watch } = useForm({
     defaultValues: getCompanyDefaultValues(selectedClient),
   });
 
@@ -78,7 +78,7 @@ function CompanyDetail({
           <td>
             {isEditMode ? (
               <Controller
-                name="registrationNumber"
+                name="registration_number"
                 control={control}
                 render={({ field }) => (
                   <input
@@ -102,7 +102,7 @@ function CompanyDetail({
           <td>
             {isEditMode ? (
               <Controller
-                name="residentType"
+                name="resident_type"
                 control={control}
                 render={({ field }) => (
                   <RadioGroup
@@ -129,7 +129,7 @@ function CompanyDetail({
             {isEditMode ? (
               <input
                 type="text"
-                {...register('ceoName')}
+                {...register('ceo_name')}
                 className={formStyles.inputFull}
               />
             ) : (
@@ -143,7 +143,7 @@ function CompanyDetail({
             {isEditMode ? (
               <input
                 type="text"
-                {...register('subBusinessNumber')}
+                {...register('sub_business_number')}
                 className={formStyles.inputFull}
               />
             ) : (
@@ -159,7 +159,7 @@ function CompanyDetail({
             {isEditMode ? (
               <input
                 type="text"
-                {...register('businessType')}
+                {...register('business_type')}
                 className={formStyles.inputFull}
               />
             ) : (
@@ -289,7 +289,7 @@ function CompanyDetail({
             {isEditMode ? (
               <input
                 type="text"
-                {...register('printableCompanyName')}
+                {...register('printable_company_name')}
                 className={formStyles.inputFull}
               />
             ) : (
@@ -305,7 +305,7 @@ function CompanyDetail({
             {isEditMode ? (
               <div className={inputGroupStyles.inputWithTextRight}>
                 <Controller
-                  name="guaranteeAmount"
+                  name="guarantee_amount"
                   control={control}
                   render={({ field }) => (
                     <input
@@ -332,7 +332,7 @@ function CompanyDetail({
             {isEditMode ? (
               <div className={inputGroupStyles.inputWithTextRight}>
                 <Controller
-                  name="creditLimit"
+                  name="credit_limit"
                   control={control}
                   render={({ field }) => (
                     <input
@@ -360,8 +360,8 @@ function CompanyDetail({
           <td colSpan={3}>
             {isEditMode ? (
               <div className={inputGroupStyles.inputAlign}>
-                <input type="text" {...register('productCode')} />
-                <input type="text" {...register('productName')} />
+                <input type="text" {...register('product_code')} />
+                <input type="text" {...register('product_name')} />
               </div>
             ) : (
               <>
@@ -385,11 +385,11 @@ function CompanyDetail({
                 <div className={inputGroupStyles.inputGroupHalf}>
                   <div className={inputGroupStyles.inputWithTextLeft}>
                     <span>예금주</span>
-                    <input type="text" {...register('accountHolder')} />
+                    <input type="text" {...register('account_holder')} />
                   </div>
                   <div className={inputGroupStyles.inputWithTextLeft}>
                     <span>계좌번호</span>
-                    <input type="text" {...register('accountNumber')} />
+                    <input type="text" {...register('account_number')} />
                   </div>
                 </div>
               </div>
@@ -456,7 +456,7 @@ function CompanyDetail({
               <div className={inputGroupStyles.inputWithTextLeft}>
                 <span>시작일</span>
                 <Controller
-                  name="contractStart"
+                  name="contract_start"
                   control={control}
                   render={({ field }) => (
                     <CustomDatepicker
@@ -468,13 +468,13 @@ function CompanyDetail({
                 <p style={{ margin: '0 10px' }}>~</p>
                 <span>종료일</span>
                 <Controller
-                  name="contractEnd"
+                  name="contract_end"
                   control={control}
                   render={({ field }) => (
                     <CustomDatepicker
                       selected={field.value}
                       onChange={field.onChange}
-                      minDate={watch('contractStart') ?? undefined}
+                      minDate={watch('contract_start') ?? undefined}
                     />
                   )}
                 />
@@ -510,7 +510,7 @@ function CompanyDetail({
           <td colSpan={3}>
             {isEditMode ? (
               <Controller
-                name="isActive"
+                name="is_active"
                 control={control}
                 render={({ field }) => (
                   <RadioGroup
