@@ -1,0 +1,53 @@
+.inputGroupCol > div + div {
+    margin-top: 10px;
+}
+
+.inputGroupHalf {
+    display:flex;
+    gap: 36px;
+}
+.inputGroupHalf > div {
+    flex:1;
+}
+
+.inputAlign {
+    display:flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.inputWithButton {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.inputWithButton input {
+    flex: auto;
+}
+
+.inputWithTextLeft {
+    display: flex;
+    align-items: center;
+}
+.inputWithTextLeft span {
+    width: 70px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+.inputWithTextLeft input {
+    flex: auto;
+}
+
+.inputWithTextRight{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.inputWithTextRight input {
+   flex: auto;
+}
+.inputWithTextRight span {
+    font-size: 14px;
+}

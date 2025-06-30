@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import styles from './CompanyDetail.module.css';
 import commonTableStyles from '@/styles/table.module.css';
+import inputGroupStyles from '@/styles/inputGroup.module.css';
+import formStyles from '@/styles/form.module.css';
 import Button from '@/components/atoms/Button';
 import LabelWithRequired from '@/components/atoms/LabelWithRequired';
 import CustomDatepicker from '@/components/molecules/CustomDatepicker';
@@ -37,10 +39,10 @@ function CompanyDetail({
           </th>
           <td colSpan={3}>
             {isEditMode ? (
-              <>
+              <div className={inputGroupStyles.inputWithButton}>
                 <input type="text" defaultValue={selectedClient?.brn} />
                 <Button text="사업자등록상태 조회" variant="white" />
-              </>
+              </div>
             ) : (
               selectedClient?.brn
             )}
@@ -52,12 +54,11 @@ function CompanyDetail({
           </th>
           <td>
             {isEditMode ? (
-              <>
-                <input
-                  type="text"
-                  defaultValue={selectedClient?.resident_registration_number}
-                />
-              </>
+              <input
+                type="text"
+                className={formStyles.inputFull}
+                defaultValue={selectedClient?.resident_registration_number}
+              />
             ) : (
               selectedClient?.resident_registration_number
             )}
@@ -79,9 +80,11 @@ function CompanyDetail({
           </th>
           <td>
             {isEditMode ? (
-              <>
-                <input type="text" defaultValue={selectedClient?.ceo_name} />
-              </>
+              <input
+                type="text"
+                className={formStyles.inputFull}
+                defaultValue={selectedClient?.ceo_name}
+              />
             ) : (
               selectedClient?.ceo_name
             )}
@@ -91,12 +94,11 @@ function CompanyDetail({
           </th>
           <td>
             {isEditMode ? (
-              <>
-                <input
-                  type="text"
-                  defaultValue={selectedClient?.sub_business_number}
-                />
-              </>
+              <input
+                type="text"
+                className={formStyles.inputFull}
+                defaultValue={selectedClient?.sub_business_number}
+              />
             ) : (
               selectedClient?.sub_business_number
             )}
@@ -108,12 +110,11 @@ function CompanyDetail({
           </th>
           <td>
             {isEditMode ? (
-              <>
-                <input
-                  type="text"
-                  defaultValue={selectedClient?.business_type}
-                />
-              </>
+              <input
+                type="text"
+                className={formStyles.inputFull}
+                defaultValue={selectedClient?.business_type}
+              />
             ) : (
               selectedClient?.business_type
             )}
@@ -123,9 +124,11 @@ function CompanyDetail({
           </th>
           <td>
             {isEditMode ? (
-              <>
-                <input type="text" defaultValue={selectedClient?.item} />
-              </>
+              <input
+                type="text"
+                className={formStyles.inputFull}
+                defaultValue={selectedClient?.item}
+              />
             ) : (
               selectedClient?.item
             )}
@@ -137,11 +140,19 @@ function CompanyDetail({
           </th>
           <td colSpan={3}>
             {isEditMode ? (
-              <>
-                <input type="text" defaultValue={selectedClient?.zipcode} />
-                <Button text="우편번호 검색" variant="white" />
-                <input type="text" defaultValue={selectedClient?.address} />
-              </>
+              <div className={inputGroupStyles.inputGroupCol}>
+                <div className={inputGroupStyles.inputWithButton}>
+                  <input type="text" defaultValue={selectedClient?.zipcode} />
+                  <Button text="우편번호 검색" variant="white" />
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    className={formStyles.inputFull}
+                    defaultValue={selectedClient?.address}
+                  />
+                </div>
+              </div>
             ) : (
               <>
                 {`(${selectedClient?.zipcode}) `}
@@ -156,9 +167,11 @@ function CompanyDetail({
           </th>
           <td>
             {isEditMode ? (
-              <>
-                <input type="text" defaultValue={selectedClient?.phone} />
-              </>
+              <input
+                type="text"
+                className={formStyles.inputFull}
+                defaultValue={selectedClient?.phone}
+              />
             ) : (
               selectedClient?.phone
             )}
@@ -168,9 +181,11 @@ function CompanyDetail({
           </th>
           <td>
             {isEditMode ? (
-              <>
-                <input type="text" defaultValue={selectedClient?.fax} />
-              </>
+              <input
+                type="text"
+                className={formStyles.inputFull}
+                defaultValue={selectedClient?.fax}
+              />
             ) : (
               selectedClient?.fax
             )}
@@ -182,19 +197,19 @@ function CompanyDetail({
           </th>
           <td colSpan={3}>
             {isEditMode ? (
-              <>
-                <div>
+              <div className={inputGroupStyles.inputGroupCol}>
+                <div className={inputGroupStyles.inputWithTextLeft}>
                   <span>부서명</span>
                   <input
                     type="text"
                     defaultValue={selectedClient?.department}
                   />
                 </div>
-                <div>
+                <div className={inputGroupStyles.inputWithTextLeft}>
                   <span>담당자</span>
                   <input type="text" defaultValue={selectedClient?.manager} />
                 </div>
-              </>
+              </div>
             ) : (
               <>
                 {selectedClient?.department} / {selectedClient?.manager}
@@ -208,12 +223,11 @@ function CompanyDetail({
           </th>
           <td colSpan={3}>
             {isEditMode ? (
-              <>
-                <input
-                  type="text"
-                  defaultValue={selectedClient?.printable_company_name}
-                />
-              </>
+              <input
+                type="text"
+                className={formStyles.inputFull}
+                defaultValue={selectedClient?.printable_company_name}
+              />
             ) : (
               selectedClient?.printable_company_name
             )}
@@ -225,13 +239,13 @@ function CompanyDetail({
           </th>
           <td>
             {isEditMode ? (
-              <>
+              <div className={inputGroupStyles.inputWithTextRight}>
                 <input
                   type="text"
                   defaultValue={selectedClient?.guarantee_amount}
                 />
                 <span>원</span>
-              </>
+              </div>
             ) : (
               selectedClient?.guarantee_amount
             )}
@@ -241,13 +255,13 @@ function CompanyDetail({
           </th>
           <td>
             {isEditMode ? (
-              <>
+              <div className={inputGroupStyles.inputWithTextRight}>
                 <input
                   type="text"
                   defaultValue={selectedClient?.credit_limit}
                 />
                 <span>원</span>
-              </>
+              </div>
             ) : (
               selectedClient?.credit_limit
             )}
@@ -259,7 +273,7 @@ function CompanyDetail({
           </th>
           <td colSpan={3}>
             {isEditMode ? (
-              <>
+              <div className={inputGroupStyles.inputAlign}>
                 <input
                   type="text"
                   defaultValue={selectedClient?.product_code}
@@ -268,7 +282,7 @@ function CompanyDetail({
                   type="text"
                   defaultValue={selectedClient?.product_name}
                 />
-              </>
+              </div>
             ) : (
               <>
                 {selectedClient?.product_code}호 /{' '}
@@ -283,26 +297,28 @@ function CompanyDetail({
           </th>
           <td colSpan={3}>
             {isEditMode ? (
-              <>
-                <div>
+              <div className={inputGroupStyles.inputGroupCol}>
+                <div className={inputGroupStyles.inputWithTextLeft}>
                   <span>은행</span>
                   <input type="text" defaultValue={selectedClient?.bank} />
                 </div>
-                <div>
-                  <span>예금주</span>
-                  <input
-                    type="text"
-                    defaultValue={selectedClient?.account_holder}
-                  />
+                <div className={inputGroupStyles.inputGroupHalf}>
+                  <div className={inputGroupStyles.inputWithTextLeft}>
+                    <span>예금주</span>
+                    <input
+                      type="text"
+                      defaultValue={selectedClient?.account_holder}
+                    />
+                  </div>
+                  <div className={inputGroupStyles.inputWithTextLeft}>
+                    <span>계좌번호</span>
+                    <input
+                      type="text"
+                      defaultValue={selectedClient?.account_number}
+                    />
+                  </div>
                 </div>
-                <div>
-                  <span>계좌번호</span>
-                  <input
-                    type="text"
-                    defaultValue={selectedClient?.account_number}
-                  />
-                </div>
-              </>
+              </div>
             ) : (
               <>
                 <p>{selectedClient?.bank}</p>
@@ -323,7 +339,11 @@ function CompanyDetail({
           <td colSpan={3}>
             {isEditMode ? (
               <>
-                <input type="text" defaultValue={selectedClient?.email} />
+                <input
+                  type="text"
+                  className={formStyles.inputFull}
+                  defaultValue={selectedClient?.email}
+                />
               </>
             ) : (
               selectedClient?.email
@@ -336,10 +356,10 @@ function CompanyDetail({
           </th>
           <td colSpan={3}>
             {isEditMode ? (
-              <>
+              <div className={inputGroupStyles.inputAlign}>
                 <input type="text" defaultValue={selectedClient?.category1} />
                 <input type="text" defaultValue={selectedClient?.category2} />
-              </>
+              </div>
             ) : (
               <>
                 {selectedClient?.category1} / {selectedClient?.category2}
@@ -353,24 +373,20 @@ function CompanyDetail({
           </th>
           <td colSpan={3}>
             {isEditMode ? (
-              <>
-                <div>
-                  시작일{' '}
-                  <CustomDatepicker
-                    selected={startDate}
-                    onChange={(date) => setStartDate(date)}
-                  />
-                </div>
-                ~
-                <div>
-                  종료일{' '}
-                  <CustomDatepicker
-                    selected={endDate}
-                    onChange={(date) => setEndDate(date)}
-                    minDate={startDate ?? undefined}
-                  />
-                </div>
-              </>
+              <div className={inputGroupStyles.inputWithTextLeft}>
+                <span>시작일</span>
+                <CustomDatepicker
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date)}
+                />
+                <p style={{ margin: '0 10px' }}>~</p>
+                <span>종료일</span>
+                <CustomDatepicker
+                  selected={endDate}
+                  onChange={(date) => setEndDate(date)}
+                  minDate={startDate ?? undefined}
+                />
+              </div>
             ) : (
               <>
                 {selectedClient?.contract_start} ~{' '}
@@ -385,9 +401,11 @@ function CompanyDetail({
           </th>
           <td colSpan={3}>
             {isEditMode ? (
-              <>
-                <input type="text" defaultValue={selectedClient?.note ?? ''} />
-              </>
+              <input
+                type="text"
+                className={formStyles.inputFull}
+                defaultValue={selectedClient?.note ?? ''}
+              />
             ) : (
               selectedClient?.note || ' '
             )}
