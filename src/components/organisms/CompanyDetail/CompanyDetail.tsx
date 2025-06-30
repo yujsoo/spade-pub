@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import styles from './CompanyDetail.module.css';
 import commonTableStyles from '@/styles/table.module.css';
 import inputGroupStyles from '@/styles/inputGroup.module.css';
@@ -8,6 +9,12 @@ import LabelWithRequired from '@/components/atoms/LabelWithRequired';
 import CustomDatepicker from '@/components/molecules/CustomDatepicker';
 import type { CompanyType } from '@/types/companyType';
 import RadioGroup from '@/components/molecules/RadioGroup';
+import {
+  formatBrn,
+  formatResidentNumber,
+  formatPhoneNumber,
+  formatCurrency,
+} from '@/utils/formatters';
 
 interface CompanyDetailProps {
   caption: string;
@@ -32,6 +39,17 @@ function CompanyDetail({
     selectedClient?.is_active ?? '',
   );
 
+  const { control } = useForm({
+    defaultValues: {
+      brn: selectedClient?.brn,
+      registration_number: selectedClient?.resident_registration_number,
+      phone: selectedClient?.phone,
+      fax: selectedClient?.fax,
+      guarantee_amount: selectedClient?.guarantee_amount,
+      credit_limit: selectedClient?.credit_limit,
+    },
+  });
+
   return (
     <table
       className={`${commonTableStyles.commonTable} ${styles.companyTable}`}>
@@ -50,7 +68,21 @@ function CompanyDetail({
           <td colSpan={3}>
             {isEditMode ? (
               <div className={inputGroupStyles.inputWithButton}>
-                <input type="text" defaultValue={selectedClient?.brn} />
+                <Controller
+                  name="brn"
+                  control={control}
+                  render={({ field }) => (
+                    <input
+                      {...field}
+                      type="text"
+                      className={formStyles.inputFull}
+                      onChange={(e) =>
+                        field.onChange(formatBrn(e.target.value))
+                      }
+                      value={field.value}
+                    />
+                  )}
+                />
                 <Button text="사업자등록상태 조회" variant="white" />
               </div>
             ) : (
@@ -64,10 +96,20 @@ function CompanyDetail({
           </th>
           <td>
             {isEditMode ? (
-              <input
-                type="text"
-                className={formStyles.inputFull}
-                defaultValue={selectedClient?.resident_registration_number}
+              <Controller
+                name="registration_number"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    {...field}
+                    type="text"
+                    className={formStyles.inputFull}
+                    onChange={(e) =>
+                      field.onChange(formatResidentNumber(e.target.value))
+                    }
+                    value={field.value}
+                  />
+                )}
               />
             ) : (
               selectedClient?.resident_registration_number
@@ -187,10 +229,20 @@ function CompanyDetail({
           </th>
           <td>
             {isEditMode ? (
-              <input
-                type="text"
-                className={formStyles.inputFull}
-                defaultValue={selectedClient?.phone}
+              <Controller
+                name="phone"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    {...field}
+                    type="text"
+                    className={formStyles.inputFull}
+                    onChange={(e) =>
+                      field.onChange(formatPhoneNumber(e.target.value))
+                    }
+                    value={field.value}
+                  />
+                )}
               />
             ) : (
               selectedClient?.phone
@@ -201,10 +253,20 @@ function CompanyDetail({
           </th>
           <td>
             {isEditMode ? (
-              <input
-                type="text"
-                className={formStyles.inputFull}
-                defaultValue={selectedClient?.fax}
+              <Controller
+                name="fax"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    {...field}
+                    type="text"
+                    className={formStyles.inputFull}
+                    onChange={(e) =>
+                      field.onChange(formatPhoneNumber(e.target.value))
+                    }
+                    value={field.value || ''}
+                  />
+                )}
               />
             ) : (
               selectedClient?.fax
@@ -260,9 +322,20 @@ function CompanyDetail({
           <td>
             {isEditMode ? (
               <div className={inputGroupStyles.inputWithTextRight}>
-                <input
-                  type="text"
-                  defaultValue={selectedClient?.guarantee_amount}
+                <Controller
+                  name="guarantee_amount"
+                  control={control}
+                  render={({ field }) => (
+                    <input
+                      {...field}
+                      type="text"
+                      className={formStyles.inputFull}
+                      onChange={(e) =>
+                        field.onChange(formatCurrency(e.target.value))
+                      }
+                      value={field.value || ''}
+                    />
+                  )}
                 />
                 <span>원</span>
               </div>
@@ -276,9 +349,20 @@ function CompanyDetail({
           <td>
             {isEditMode ? (
               <div className={inputGroupStyles.inputWithTextRight}>
-                <input
-                  type="text"
-                  defaultValue={selectedClient?.credit_limit}
+                <Controller
+                  name="credit_limit"
+                  control={control}
+                  render={({ field }) => (
+                    <input
+                      {...field}
+                      type="text"
+                      className={formStyles.inputFull}
+                      onChange={(e) =>
+                        field.onChange(formatCurrency(e.target.value))
+                      }
+                      value={field.value || ''}
+                    />
+                  )}
                 />
                 <span>원</span>
               </div>
