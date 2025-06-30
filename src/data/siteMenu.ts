@@ -34,7 +34,13 @@ export const siteMenuTree: SiteMenu[] = [
     parentId: null,
     children: [
       { id: 21, title: '회사등록', level: 2, parentId: 2, path: '/' },
-      { id: 22, title: '거래처등록', level: 2, parentId: 2, path: '/' },
+      {
+        id: 22,
+        title: '거래처등록',
+        level: 2,
+        parentId: 2,
+        path: '/addClient',
+      },
       {
         id: 23,
         title: '계정과목 및 적요등록',

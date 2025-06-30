@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './MenuItem.module.css';
 import type { SiteMenu } from '@/types/siteMenu';
@@ -12,6 +12,7 @@ interface MenuProps {
 }
 
 function MenuItem({ menu, isOpen, openItemId, setOpenItemId }: MenuProps) {
+  const { pathname } = useLocation();
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   const toggleItem = (id: number) => {
@@ -23,10 +24,17 @@ function MenuItem({ menu, isOpen, openItemId, setOpenItemId }: MenuProps) {
       {menu.map((item) => {
         const isItemOpen = openItemId === item.id;
 
+        // 현재 페이지 확인
+        const isCnt = item.path && pathname === item.path;
+        const isChildCnt = item.children?.some(
+          (child) => child.path && pathname === child.path,
+        );
+        const isMatched = isCnt || isChildCnt;
+
         return (
           <li
             key={item.id}
-            className={`${styles.menuItem} ${item.level === 1 ? styles.level1 : styles.level2}`}
+            className={`${styles.menuItem} ${item.level === 1 ? styles.level1 : styles.level2} ${isMatched ? styles.cntActive : ''}`}
             onMouseEnter={() => !isOpen && setHoveredId(item.id)}
             onMouseLeave={() => !isOpen && setHoveredId(null)}>
             <p
@@ -83,11 +91,17 @@ function MenuItem({ menu, isOpen, openItemId, setOpenItemId }: MenuProps) {
                 <div className={styles.popContent}>
                   <p className={styles.popTitle}>{item.title}</p>
                   <ul className={styles.popMenuList}>
-                    {item.children.map((child) => (
-                      <li key={child.id}>
-                        <Link to={child.path || '#'}>{child.title}</Link>
-                      </li>
-                    ))}
+                    {item.children.map((child) => {
+                      const isChildActive =
+                        child.path && pathname === child.path;
+                      return (
+                        <li
+                          key={child.id}
+                          className={isChildActive ? styles.cntActive : ''}>
+                          <Link to={child.path || '#'}>{child.title}</Link>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               </div>
