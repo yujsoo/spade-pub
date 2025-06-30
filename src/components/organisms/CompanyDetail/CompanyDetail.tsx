@@ -61,13 +61,11 @@ function CompanyDetail({
             <LabelWithRequired label="주민기재분" required />
           </th>
           <td>
-            <td colSpan={3}>
-              {isEditMode ? (
-                <>{/* radio 컴포넌트 자리 */}</>
-              ) : (
-                selectedClient?.resident_type
-              )}
-            </td>
+            {isEditMode ? (
+              <>{/* radio 컴포넌트 자리 */}</>
+            ) : (
+              selectedClient?.resident_type
+            )}
           </td>
         </tr>
         <tr>
