@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import styles from './CompanyDetail.module.css';
 import commonTableStyles from '@/styles/table.module.css';
@@ -15,6 +14,7 @@ import {
   formatPhoneNumber,
   formatCurrency,
 } from '@/utils/formatters';
+import { getCompanyDefaultValues } from '@/utils/formDefaults';
 
 interface CompanyDetailProps {
   caption: string;
@@ -27,27 +27,8 @@ function CompanyDetail({
   selectedClient,
   isEditMode,
 }: CompanyDetailProps) {
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
-
-  // radio 상태 관련
-  const [residentType, setResidentType] = useState(
-    selectedClient?.resident_type ?? '',
-  );
-
-  const [isActiveType, setIsActiveType] = useState(
-    selectedClient?.is_active ?? '',
-  );
-
-  const { control } = useForm({
-    defaultValues: {
-      brn: selectedClient?.brn,
-      registration_number: selectedClient?.resident_registration_number,
-      phone: selectedClient?.phone,
-      fax: selectedClient?.fax,
-      guarantee_amount: selectedClient?.guarantee_amount,
-      credit_limit: selectedClient?.credit_limit,
-    },
+  const { control, register, handleSubmit, watch } = useForm({
+    defaultValues: getCompanyDefaultValues(selectedClient),
   });
 
   return (
@@ -97,7 +78,7 @@ function CompanyDetail({
           <td>
             {isEditMode ? (
               <Controller
-                name="registration_number"
+                name="registrationNumber"
                 control={control}
                 render={({ field }) => (
                   <input
@@ -120,16 +101,20 @@ function CompanyDetail({
           </th>
           <td>
             {isEditMode ? (
-              <RadioGroup
-                name="resident_type"
-                value={residentType}
-                options={[
-                  { label: '부', value: '1' },
-                  { label: '여', value: '0' },
-                ]}
-                onChange={(val) => {
-                  setResidentType(val);
-                }}
+              <Controller
+                name="residentType"
+                control={control}
+                render={({ field }) => (
+                  <RadioGroup
+                    name="resident_type"
+                    value={field.value}
+                    onChange={field.onChange}
+                    options={[
+                      { label: '부', value: '1' },
+                      { label: '여', value: '0' },
+                    ]}
+                  />
+                )}
               />
             ) : (
               selectedClient?.resident_type
@@ -144,8 +129,8 @@ function CompanyDetail({
             {isEditMode ? (
               <input
                 type="text"
+                {...register('ceoName')}
                 className={formStyles.inputFull}
-                defaultValue={selectedClient?.ceo_name}
               />
             ) : (
               selectedClient?.ceo_name
@@ -158,8 +143,8 @@ function CompanyDetail({
             {isEditMode ? (
               <input
                 type="text"
+                {...register('subBusinessNumber')}
                 className={formStyles.inputFull}
-                defaultValue={selectedClient?.sub_business_number}
               />
             ) : (
               selectedClient?.sub_business_number
@@ -174,8 +159,8 @@ function CompanyDetail({
             {isEditMode ? (
               <input
                 type="text"
+                {...register('businessType')}
                 className={formStyles.inputFull}
-                defaultValue={selectedClient?.business_type}
               />
             ) : (
               selectedClient?.business_type
@@ -188,8 +173,8 @@ function CompanyDetail({
             {isEditMode ? (
               <input
                 type="text"
+                {...register('item')}
                 className={formStyles.inputFull}
-                defaultValue={selectedClient?.item}
               />
             ) : (
               selectedClient?.item
@@ -204,14 +189,14 @@ function CompanyDetail({
             {isEditMode ? (
               <div className={inputGroupStyles.inputGroupCol}>
                 <div className={inputGroupStyles.inputWithButton}>
-                  <input type="text" defaultValue={selectedClient?.zipcode} />
+                  <input type="text" {...register('zipcode')} />
                   <Button text="우편번호 검색" variant="white" />
                 </div>
                 <div>
                   <input
                     type="text"
+                    {...register('address')}
                     className={formStyles.inputFull}
-                    defaultValue={selectedClient?.address}
                   />
                 </div>
               </div>
@@ -282,14 +267,11 @@ function CompanyDetail({
               <div className={inputGroupStyles.inputGroupCol}>
                 <div className={inputGroupStyles.inputWithTextLeft}>
                   <span>부서명</span>
-                  <input
-                    type="text"
-                    defaultValue={selectedClient?.department}
-                  />
+                  <input type="text" {...register('department')} />
                 </div>
                 <div className={inputGroupStyles.inputWithTextLeft}>
                   <span>담당자</span>
-                  <input type="text" defaultValue={selectedClient?.manager} />
+                  <input type="text" {...register('manager')} />
                 </div>
               </div>
             ) : (
@@ -307,8 +289,8 @@ function CompanyDetail({
             {isEditMode ? (
               <input
                 type="text"
+                {...register('printableCompanyName')}
                 className={formStyles.inputFull}
-                defaultValue={selectedClient?.printable_company_name}
               />
             ) : (
               selectedClient?.printable_company_name
@@ -323,7 +305,7 @@ function CompanyDetail({
             {isEditMode ? (
               <div className={inputGroupStyles.inputWithTextRight}>
                 <Controller
-                  name="guarantee_amount"
+                  name="guaranteeAmount"
                   control={control}
                   render={({ field }) => (
                     <input
@@ -350,7 +332,7 @@ function CompanyDetail({
             {isEditMode ? (
               <div className={inputGroupStyles.inputWithTextRight}>
                 <Controller
-                  name="credit_limit"
+                  name="creditLimit"
                   control={control}
                   render={({ field }) => (
                     <input
@@ -378,14 +360,8 @@ function CompanyDetail({
           <td colSpan={3}>
             {isEditMode ? (
               <div className={inputGroupStyles.inputAlign}>
-                <input
-                  type="text"
-                  defaultValue={selectedClient?.product_code}
-                />
-                <input
-                  type="text"
-                  defaultValue={selectedClient?.product_name}
-                />
+                <input type="text" {...register('productCode')} />
+                <input type="text" {...register('productName')} />
               </div>
             ) : (
               <>
@@ -404,22 +380,16 @@ function CompanyDetail({
               <div className={inputGroupStyles.inputGroupCol}>
                 <div className={inputGroupStyles.inputWithTextLeft}>
                   <span>은행</span>
-                  <input type="text" defaultValue={selectedClient?.bank} />
+                  <input type="text" {...register('bank')} />
                 </div>
                 <div className={inputGroupStyles.inputGroupHalf}>
                   <div className={inputGroupStyles.inputWithTextLeft}>
                     <span>예금주</span>
-                    <input
-                      type="text"
-                      defaultValue={selectedClient?.account_holder}
-                    />
+                    <input type="text" {...register('accountHolder')} />
                   </div>
                   <div className={inputGroupStyles.inputWithTextLeft}>
                     <span>계좌번호</span>
-                    <input
-                      type="text"
-                      defaultValue={selectedClient?.account_number}
-                    />
+                    <input type="text" {...register('accountNumber')} />
                   </div>
                 </div>
               </div>
@@ -442,13 +412,11 @@ function CompanyDetail({
           </th>
           <td colSpan={3}>
             {isEditMode ? (
-              <>
-                <input
-                  type="text"
-                  className={formStyles.inputFull}
-                  defaultValue={selectedClient?.email}
-                />
-              </>
+              <input
+                type="text"
+                {...register('email')}
+                className={formStyles.inputFull}
+              />
             ) : (
               selectedClient?.email
             )}
@@ -461,8 +429,16 @@ function CompanyDetail({
           <td colSpan={3}>
             {isEditMode ? (
               <div className={inputGroupStyles.inputAlign}>
-                <input type="text" defaultValue={selectedClient?.category1} />
-                <input type="text" defaultValue={selectedClient?.category2} />
+                <input
+                  type="text"
+                  {...register('category1')}
+                  className={formStyles.inputFull}
+                />
+                <input
+                  type="text"
+                  {...register('category2')}
+                  className={formStyles.inputFull}
+                />
               </div>
             ) : (
               <>
@@ -479,16 +455,28 @@ function CompanyDetail({
             {isEditMode ? (
               <div className={inputGroupStyles.inputWithTextLeft}>
                 <span>시작일</span>
-                <CustomDatepicker
-                  selected={startDate}
-                  onChange={(date) => setStartDate(date)}
+                <Controller
+                  name="contractStart"
+                  control={control}
+                  render={({ field }) => (
+                    <CustomDatepicker
+                      selected={field.value}
+                      onChange={field.onChange}
+                    />
+                  )}
                 />
                 <p style={{ margin: '0 10px' }}>~</p>
                 <span>종료일</span>
-                <CustomDatepicker
-                  selected={endDate}
-                  onChange={(date) => setEndDate(date)}
-                  minDate={startDate ?? undefined}
+                <Controller
+                  name="contractEnd"
+                  control={control}
+                  render={({ field }) => (
+                    <CustomDatepicker
+                      selected={field.value}
+                      onChange={field.onChange}
+                      minDate={watch('contractStart') ?? undefined}
+                    />
+                  )}
                 />
               </div>
             ) : (
@@ -507,8 +495,8 @@ function CompanyDetail({
             {isEditMode ? (
               <input
                 type="text"
+                {...register('note')}
                 className={formStyles.inputFull}
-                defaultValue={selectedClient?.note ?? ''}
               />
             ) : (
               selectedClient?.note || ' '
@@ -521,14 +509,20 @@ function CompanyDetail({
           </th>
           <td colSpan={3}>
             {isEditMode ? (
-              <RadioGroup
-                name="is_Active"
-                value={isActiveType}
-                options={[
-                  { label: '부', value: '1' },
-                  { label: '여', value: '0' },
-                ]}
-                onChange={(val) => setIsActiveType(val)}
+              <Controller
+                name="isActive"
+                control={control}
+                render={({ field }) => (
+                  <RadioGroup
+                    name="is_active"
+                    value={field.value}
+                    onChange={field.onChange}
+                    options={[
+                      { label: '부', value: '1' },
+                      { label: '여', value: '0' },
+                    ]}
+                  />
+                )}
               />
             ) : (
               selectedClient?.is_active
