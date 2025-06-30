@@ -7,3 +7,7 @@
 .btnCon button {
     width: 93px;
 }
+
+.btnCon button + button {
+    margin-left: 10px;
+}
