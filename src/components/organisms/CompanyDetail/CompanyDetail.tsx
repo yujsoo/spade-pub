@@ -7,6 +7,7 @@ import Button from '@/components/atoms/Button';
 import LabelWithRequired from '@/components/atoms/LabelWithRequired';
 import CustomDatepicker from '@/components/molecules/CustomDatepicker';
 import type { CompanyType } from '@/types/companyType';
+import RadioGroup from '@/components/molecules/RadioGroup';
 
 interface CompanyDetailProps {
   caption: string;
@@ -21,6 +22,15 @@ function CompanyDetail({
 }: CompanyDetailProps) {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
+
+  // radio 상태 관련
+  const [residentType, setResidentType] = useState(
+    selectedClient?.resident_type ?? '',
+  );
+
+  const [isActiveType, setIsActiveType] = useState(
+    selectedClient?.is_active ?? '',
+  );
 
   return (
     <table
@@ -68,7 +78,17 @@ function CompanyDetail({
           </th>
           <td>
             {isEditMode ? (
-              <>{/* radio 컴포넌트 자리 */}</>
+              <RadioGroup
+                name="resident_type"
+                value={residentType}
+                options={[
+                  { label: '부', value: '1' },
+                  { label: '여', value: '0' },
+                ]}
+                onChange={(val) => {
+                  setResidentType(val);
+                }}
+              />
             ) : (
               selectedClient?.resident_type
             )}
@@ -417,7 +437,15 @@ function CompanyDetail({
           </th>
           <td colSpan={3}>
             {isEditMode ? (
-              <>{/* radio 컴포넌트 자리 */}</>
+              <RadioGroup
+                name="is_Active"
+                value={isActiveType}
+                options={[
+                  { label: '부', value: '1' },
+                  { label: '여', value: '0' },
+                ]}
+                onChange={(val) => setIsActiveType(val)}
+              />
             ) : (
               selectedClient?.is_active
             )}
