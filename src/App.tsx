@@ -10,7 +10,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<DefaultLayout />}>
-          <Route path="/" element={<AddClientPage />} />
           <Route path="/addClient" element={<AddClientPage />} />
         </Route>
       </Routes>
