@@ -1,13 +1,27 @@
 .userUtil a {
- color: var(--color-gray4);
- padding: 10px;
- font-size: 14px;
- font-weight: 500;
+    color: var(--color-gray4);
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    padding-left:24px;
+    background-repeat: no-repeat;
+    background-position: center left;
+    background-size: 24px;
+    background-color: transparent;
 }
+
 .userUtil a img {
     margin-right: 2px;
     vertical-align: text-top;
 }
 .userUtil a + a {
     margin-left: 10px;
+}
+
+.userUtil .mypage {
+    background-image: url(/assets/ic/ic_mypage.svg);
+}
+
+.userUtil .logout {
+    background-image:url(/assets/ic/ic_logout.svg);
 }

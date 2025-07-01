@@ -78,6 +78,10 @@
     background-image: url('/assets/ic/ic_report.svg');
 }
 
+.menuIcon[data-icon="icon-char"] {
+    background-image: url('/assets/ic/ic_char_light.svg');
+}
+
 .arrowIcon {
     display: inline-block;
     position: absolute;

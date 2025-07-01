@@ -19,6 +19,8 @@ function CustomDatepicker({ selected, onChange, minDate }: DatepickerProps) {
         minDate={minDate}
         filterDate={(date) => date.getDay() !== 0}
         dayClassName={(date) => (date.getDay() === 0 ? 'sunday-cell' : '')}
+        calendarClassName="custom-datepicker"
+        className={styles.input}
         renderCustomHeader={({
           date,
           decreaseMonth,

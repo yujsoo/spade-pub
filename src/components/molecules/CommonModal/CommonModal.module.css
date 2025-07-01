@@ -40,8 +40,11 @@
 .modalClose {
     position: absolute;
     z-index: 1;
-    top: 0;
-    right: 0;
-    background: transparent;
+    top: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    background: transparent url(/assets/ic/ic_popclose.svg) no-repeat center;
+    background-size: 24px;
     text-indent: -9999px;
 }

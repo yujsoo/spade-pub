@@ -45,3 +45,6 @@
     background: var(--color-gray2);
 }
 
+.input {
+    background:url(/assets/ic/ic_calendar.svg) no-repeat center right 16px;
+}
