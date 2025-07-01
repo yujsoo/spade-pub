@@ -1,5 +1,5 @@
 import Modal from 'react-modal';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import DefaultLayout from '@/components/templates/DefaultLayout';
 import AddClientPage from '@/pages/AddClientPage/AddClientPage';
 
@@ -9,8 +9,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/addClient" />} />
         <Route element={<DefaultLayout />}>
+          <Route path="/" element={<AddClientPage />} />
           <Route path="/addClient" element={<AddClientPage />} />
         </Route>
       </Routes>
