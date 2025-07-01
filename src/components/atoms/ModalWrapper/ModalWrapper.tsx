@@ -13,8 +13,7 @@ function ModalWrapper({ isOpen, onRequestClose, children }: ModalWrapperProps) {
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       className={styles.modal}
-      overlayClassName={styles.overlay}
-      ariaHideApp={false}>
+      overlayClassName={styles.overlay}>
       {children}
     </Modal>
   );

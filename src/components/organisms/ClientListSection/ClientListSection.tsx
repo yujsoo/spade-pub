@@ -28,10 +28,12 @@ function ClientListSection({ clientData, onSelect, selectedId }: Props) {
           caption="거래처 등록 현황 표"
         />
       </ScrollContainer>
-      <RegisterClientModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
+      {isModalOpen && (
+        <RegisterClientModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
     </>
   );
 }

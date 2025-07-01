@@ -1,8 +1,11 @@
 .modalWrap {
     position: relative;
     padding: 25px 35px;
-    padding-bottom:93px;
     background: var(--color-white);
+}
+
+.modalWrap.withBtn {
+    padding-bottom: 93px;
 }
 
 .modalTitle h3 {

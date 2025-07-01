@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import styles from './CompanyDetail.module.css';
 import commonTableStyles from '@/styles/table.module.css';
@@ -8,6 +9,7 @@ import LabelWithRequired from '@/components/atoms/LabelWithRequired';
 import CustomDatepicker from '@/components/molecules/CustomDatepicker';
 import type { CompanyType } from '@/types/companyType';
 import RadioGroup from '@/components/molecules/RadioGroup';
+import AddressSearchModal from '@/components/organisms/AddressSearchModal';
 import {
   formatBrn,
   formatResidentNumber,
@@ -27,7 +29,9 @@ function CompanyDetail({
   selectedClient,
   isEditMode,
 }: CompanyDetailProps) {
-  const { control, register, watch } = useForm({
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { setValue, control, register, watch } = useForm({
     defaultValues: getCompanyDefaultValues(selectedClient),
   });
 
@@ -190,8 +194,12 @@ function CompanyDetail({
               <div className={inputGroupStyles.inputGroupCol}>
                 <div
                   className={`${inputGroupStyles.inputWithButton} ${styles.zipcodeBox}`}>
-                  <input type="text" {...register('zipcode')} />
-                  <Button text="우편번호 검색" variant="white" />
+                  <input type="text" {...register('zipcode')} disabled />
+                  <Button
+                    text="우편번호 검색"
+                    variant="white"
+                    onClick={() => setIsModalOpen(true)}
+                  />
                 </div>
                 <div>
                   <input
@@ -200,6 +208,16 @@ function CompanyDetail({
                     className={formStyles.inputFull}
                   />
                 </div>
+                {isModalOpen && (
+                  <AddressSearchModal
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    onComplete={(zipcode, address) => {
+                      setValue('zipcode', zipcode);
+                      setValue('address', address);
+                    }}
+                  />
+                )}
               </div>
             ) : (
               <>

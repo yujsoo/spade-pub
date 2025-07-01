@@ -7,12 +7,19 @@ interface CommonModalProps {
   onClose: () => void;
   title: string;
   children: React.ReactNode;
+  hideBtn?: boolean;
 }
 
-function CommonModal({ isOpen, onClose, title, children }: CommonModalProps) {
+function CommonModal({
+  isOpen,
+  onClose,
+  title,
+  children,
+  hideBtn = false,
+}: CommonModalProps) {
   return (
     <ModalWrapper isOpen={isOpen} onRequestClose={onClose}>
-      <div className={styles.modalWrap}>
+      <div className={`${styles.modalWrap} ${!hideBtn ? styles.withBtn : ''}`}>
         <div className={styles.modalTitle}>
           <h3>{title}</h3>
         </div>
@@ -21,10 +28,12 @@ function CommonModal({ isOpen, onClose, title, children }: CommonModalProps) {
           닫기
         </button>
       </div>
-      <div className={styles.modalCtrlBtn}>
-        <Button text="취소" variant="white" onClick={onClose} />
-        <Button text="저장" />
-      </div>
+      {!hideBtn && (
+        <div className={styles.modalCtrlBtn}>
+          <Button text="취소" variant="white" onClick={onClose} />
+          <Button text="저장" />
+        </div>
+      )}
     </ModalWrapper>
   );
 }

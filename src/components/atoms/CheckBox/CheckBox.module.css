@@ -13,6 +13,11 @@
     background-color: var(--color-primary);
 }
 
+.checkbox input:disabled + i {
+  background-color: var(--color-gray1);
+  border-color: var(--color-gary2);
+}
+
 .checkbox input:checked + i::after {
     content: '';
     position: absolute;
