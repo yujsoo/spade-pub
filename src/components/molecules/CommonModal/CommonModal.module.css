@@ -1,0 +1,44 @@
+.modalWrap {
+    position: relative;
+    padding: 25px 35px;
+    padding-bottom:93px;
+    background: var(--color-white);
+}
+
+.modalTitle h3 {
+    padding-bottom:15px;
+    color: var(--color-primary);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.modalCtrlBtn {
+    display:flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px 0;
+    justify-content: center;
+    gap: 8px;
+    border-top: 1px solid var(--color-gray2);
+}
+
+.modalCtrlBtn > * {
+    width: 124px;
+}
+
+.modalContent {
+    max-height: 680px;
+    padding-bottom: 25px;
+    overflow-y: auto;
+}
+
+.modalClose {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background: transparent;
+    text-indent: -9999px;
+}

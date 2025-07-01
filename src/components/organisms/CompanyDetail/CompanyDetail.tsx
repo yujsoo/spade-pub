@@ -110,8 +110,8 @@ function CompanyDetail({
                     value={field.value}
                     onChange={field.onChange}
                     options={[
-                      { label: '부', value: '1' },
-                      { label: '여', value: '0' },
+                      { label: '부', value: '부' },
+                      { label: '여', value: '여' },
                     ]}
                   />
                 )}
@@ -519,8 +519,8 @@ function CompanyDetail({
                     value={field.value}
                     onChange={field.onChange}
                     options={[
-                      { label: '부', value: '1' },
-                      { label: '여', value: '0' },
+                      { label: '부', value: '부' },
+                      { label: '여', value: '여' },
                     ]}
                   />
                 )}

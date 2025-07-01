@@ -8,7 +8,7 @@ export interface CompanyType {
   resident_registration_number: string;
 
   // 주민기재분
-  resident_type: '부' | '여';
+  resident_type: '여' | '부';
 
   // 대표자 성명
   ceo_name: string;
